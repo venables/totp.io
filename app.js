@@ -2,10 +2,12 @@
 
 var express = require('express');
 var app = express();
+var nodalytics = require('nodalytics');
 var port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
+app.use(nodalytics('UA-60297301-1'));
 
 app.get('/', function (req, res) {
   res.send('Hello World!')
