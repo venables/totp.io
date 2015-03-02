@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>TOTP</title>
+    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="jumbotron">
+        <h1 id="otp">------</h1>
+        <p class="lead">Updating in: <span id='updatingIn'></span></p>
+      </div>
+
+      <div style="display: none">
+        <div class="row">
+
+          <form>
+            <fieldset>
+
+              <div class="clearfix">
+                <label for="secret">Secret (base32)</label>
+                <div class="input"><input type="text" size="30" name="secret" id="secret" class="xlarge" value="<%= token %>" /></div>
+              </div>
+              <!-- /clearfix -->
+              <div class="clearfix">
+                <label>Secret (hex)</label>
+                <div class="input"><span class="label label-default" id="secretHex"></span>
+                  <span id='secretHexLength'></span></div>
+              </div>
+              <!-- /clearfix -->
+              <div class="clearfix">
+                <label>QR Code</label>
+                <div class="input"><img id="qrImg" src="" /></div>
+              </div>
+              <!-- /clearfix -->
+              <div class="clearfix">
+                <label>Unix epoch div 30 (padded hex)</label>
+                <div class="input"><span class="label label-default" id='epoch'></span></div>
+              </div>
+              <!-- /clearfix -->
+              <div class="clearfix">
+                <label>HMAC(secret, time)</label>
+                <div class="input" id='hmac'></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type='text/javascript' src="http://caligatio.github.io/jsSHA/sha.js"></script>
+    <script type="text/javascript" src="/totp.js"></script>
+  </body>
+</html>
