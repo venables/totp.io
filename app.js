@@ -11,6 +11,9 @@ var nodalytics = require('nodalytics');
 var port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
+if (process.env.NODE_ENV != 'development') {
+  app.use(require('express-force-ssl'));
+}
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev')); // combined
 app.use(nodalytics('UA-60297301-1'));
