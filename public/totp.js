@@ -35,11 +35,11 @@ function updateOtp() {
   var hmacObj = new jsSHA(time, 'HEX');
   var hmac = hmacObj.getHMAC(key, 'HEX', 'SHA-1', "HEX");
 
-  $('#qrImg').attr('src', 'https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=200x200&chld=M|0&cht=qr&chl=otpauth://totp/user@host.com%3Fsecret%3D' + $('#secret').val());
-  $('#secretHex').text(key);
-  $('#secretHexLength').text((key.length * 4) + ' bits'); 
-  $('#epoch').text(time);
-  $('#hmac').empty();
+  //$('#qrImg').attr('src', 'https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=200x200&chld=M|0&cht=qr&chl=otpauth://totp/user@host.com%3Fsecret%3D' + $('#secret').val());
+  //$('#secretHex').text(key);
+  //$('#secretHexLength').text((key.length * 4) + ' bits');
+  //$('#epoch').text(time);
+  //$('#hmac').empty();
 
   if (hmac == 'KEY MUST BE IN BYTE INCREMENTS') {
     $('#hmac').append($('<span/>').addClass('label important').append(hmac));
@@ -59,8 +59,7 @@ function updateOtp() {
   $('#otp').text(otp);
 }
 
-function timer()
-{
+function timer() {
   var epoch = Math.round(new Date().getTime() / 1000.0);
   var countDown = 30 - (epoch % 30);
   if (epoch % 30 == 0) updateOtp();
@@ -69,16 +68,14 @@ function timer()
 }
 
 $(function () {
-  updateOtp();
-
-  $('#update').click(function (event) {
-    updateOtp();
-    event.preventDefault();
+  $('form#home-submit').submit(function(e) {
+    e.preventDefault();
+    document.location.href = "/" + $('#totp-token').val();
   });
 
-  $('#secret').keyup(function () {
+  if ($('.token-show').length) {
     updateOtp();
-  });
-
-  setInterval(timer, 1000);
+    timer();
+    setInterval(timer, 1000);
+  }
 });

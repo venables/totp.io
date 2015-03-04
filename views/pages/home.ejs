@@ -8,13 +8,13 @@
   <div class="jumbotron">
     <h1>One-time passwords in your browser</h1>
     <hr>
-    <p>Just type your TOTP seed and see your code:</p>
-    <form>
+    <p>Just type your TOTP seed and see your one time passcode:</p>
+    <form id="home-submit">
       <p>
-        <input type="text" value="MJFSGVKENVDWEU22">
+        <input type="text" id="totp-token" placeholder="OVEK7TIJ3A3DM3M6" value="OVEK7TIJ3A3DM3M6">
       </p>
       <p>
-        <a class="btn btn-lg btn-success" href="/sessions/new" role="button">Get started</a>
+        <button type="submit" class="btn btn-success btn-lg">Get my code</button>
       </p>
     </form>
   </div>

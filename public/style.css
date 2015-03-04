@@ -53,9 +53,15 @@ header .logo a {
   font-size: 53px;
 }
 
-.container.home-index .jumbotron .btn {
-  font-size: 1em;
-  padding: 14px 24px;
+.container.token-show .jumbotron h1 {
+  font-size: 68px;
+}
+
+.container.home-index .jumbotron form input[type="text"] {
+  font-size: 0.9em;
+  padding: 0.5em;
+  min-width: 85%;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
