@@ -11,9 +11,9 @@ function base32tohex(base32) {
     bits += leftpad(val.toString(2), 5, '0');
   }
 
-  for (var i = 0; i+4 <= bits.length; i+=4) {
-    var chunk = bits.substr(i, 4);
-    hex = hex + parseInt(chunk, 2).toString(16) ;
+  for (var j = 0; j+4 <= bits.length; j+=4) {
+    var chunk = bits.substr(j, 4);
+    hex = hex + parseInt(chunk, 2).toString(16);
   }
   return hex;
 
@@ -27,23 +27,15 @@ function leftpad(str, len, pad) {
 }
 
 function updateOtp() {
+  var secret = window.location.pathname.replace(/\//, '');
 
-  var key = base32tohex($('#secret').val());
+  var key = base32tohex(secret);
   var epoch = Math.round(new Date().getTime() / 1000.0);
   var time = leftpad(dec2hex(Math.floor(epoch / 30)), 16, '0');
 
-  var hmacObj = new jsSHA(time, 'HEX');
-  var hmac = hmacObj.getHMAC(key, 'HEX', 'SHA-1', "HEX");
-
-  //$('#qrImg').attr('src', 'https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=200x200&chld=M|0&cht=qr&chl=otpauth://totp/user@host.com%3Fsecret%3D' + $('#secret').val());
-  //$('#secretHex').text(key);
-  //$('#secretHexLength').text((key.length * 4) + ' bits');
-  //$('#epoch').text(time);
-  //$('#hmac').empty();
-
-  if (hmac == 'KEY MUST BE IN BYTE INCREMENTS') {
-    $('#hmac').append($('<span/>').addClass('label important').append(hmac));
-  } else {
+  try {
+    var hmacObj = new jsSHA(time, 'HEX');
+    var hmac = hmacObj.getHMAC(key, 'HEX', 'SHA-1', "HEX");
     var offset = hex2dec(hmac.substring(hmac.length - 1));
     var part1 = hmac.substr(0, offset * 2);
     var part2 = hmac.substr(offset * 2, 8);
@@ -51,20 +43,21 @@ function updateOtp() {
     if (part1.length > 0 ) $('#hmac').append($('<span/>').addClass('label label-default').append(part1));
     $('#hmac').append($('<span/>').addClass('label label-primary').append(part2));
     if (part3.length > 0) $('#hmac').append($('<span/>').addClass('label label-default').append(part3));
+
+    var otp = (hex2dec(hmac.substr(offset * 2, 8)) & hex2dec('7fffffff')) + '';
+    otp = (otp).substr(otp.length - 6, 6);
+
+    $('#otp').text(otp);
+  } catch (e) {
+    $('#otp').text('Invalid key');
   }
-
-  var otp = (hex2dec(hmac.substr(offset * 2, 8)) & hex2dec('7fffffff')) + '';
-  otp = (otp).substr(otp.length - 6, 6);
-
-  $('#otp').text(otp);
 }
 
 function timer() {
   var epoch = Math.round(new Date().getTime() / 1000.0);
   var countDown = 30 - (epoch % 30);
-  if (epoch % 30 == 0) updateOtp();
+  if (epoch % 30 === 0) updateOtp();
   $('#updatingIn').text(countDown);
-
 }
 
 $(function () {

@@ -23,7 +23,7 @@ app.get('/', function(req, res) {
 })
 
 app.get('/:token', function(req, res) {
-  res.render('pages/token', { token: req.params.token });
+  res.render('pages/token');
 });
 
 var server = app.listen(port, function () {
