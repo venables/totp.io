@@ -7,23 +7,17 @@ var express = require('express');
 
 var app = express();
 var morgan = require('morgan')
-var nodalytics = require('nodalytics');
 var port = process.env.PORT || 3000;
 
-app.set('view engine', 'ejs');
-if (process.env.NODE_ENV != 'development') {
-  app.use(require('express-force-ssl'));
-}
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev')); // combined
-app.use(nodalytics('UA-60297301-1'));
 
 app.get('/', function(req, res) {
-  res.render('pages/home');
+  res.sendFile(__dirname+'/public/index.html');
 })
 
 app.get('/:token', function(req, res) {
-  res.render('pages/token');
+  res.sendFile(__dirname+'/public/token.html');
 });
 
 var server = app.listen(port, function () {
