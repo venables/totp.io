@@ -1,0 +1,5 @@
+$dark-gray: #191e27;
+
+body {
+  background-color: $dark-gray;
+}
