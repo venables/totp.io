@@ -1,6 +1,71 @@
-$dark-gray: #191e27;
-
 body {
-  background-color: $dark-gray;
-  color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #fff;
+}
+
+header {
+  margin-bottom: 20px;
+
+}
+
+header .logo {
+  text-align: center;
+}
+
+header .logo a {
+  background: url("./logo.png") no-repeat 0 0;
+  background-size: 102px 34px;
+  display: block;
+  height: 34px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  text-indent: -99999px;
+  width: 102px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  header .logo a {
+    background-image: url("./logo@2x.png");
+  }
+}
+
+.jumbotron {
+  text-align: center;
+}
+
+.token-show .jumbotron {
+  background-color: transparent;
+}
+
+.container.home-index {
+  margin: 0 auto;
+}
+
+.container.home-index .jumbotron {
+  border-bottom: 1px solid #e5e5e5;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.container.home-index .jumbotron h1 {
+  margin-top: 0;
+  font-size: 53px;
+}
+
+.container.token-show .jumbotron h1 {
+  font-size: 68px;
+}
+
+.container.home-index .jumbotron form input[type="text"] {
+  font-size: 0.9em;
+  padding: 0.5em;
+  min-width: 85%;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .container.home-index {
+    max-width: 730px;
+  }
 }

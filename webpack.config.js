@@ -17,6 +17,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(root, "_dist"),
+    historyApiFallback: true,
     hot: true
   },
   module: {
@@ -38,6 +39,19 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(jpg|png|svg)$/,
+        use: {
+          loader: "url-loader"
+        }
+      },
+      {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]"
+        }
       }
     ]
   },
