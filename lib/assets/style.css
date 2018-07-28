@@ -1,3 +1,7 @@
+html, body {
+  height: 100%;
+}
+
 body {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -28,6 +32,23 @@ header .logo a {
   header .logo a {
     background-image: url("./logo@2x.png");
   }
+}
+
+footer {
+  color: #6c757d;
+  font-size: 0.8em;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+footer p {
+  margin: 0
+}
+
+footer a, footer a:hover, footer a:active {
+  color: #6c757d;
+  text-decoration: none;
 }
 
 .jumbotron {
