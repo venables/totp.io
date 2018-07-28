@@ -1,7 +1,6 @@
 "use strict";
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const root = path.join(__dirname);
 const webpack = require("webpack");
@@ -13,7 +12,7 @@ module.exports = {
   ],
   output: {
     path: path.join(root, "_dist"),
-    filename: "bundle.js"
+    filename: "[name].[hash].js"
   },
   devServer: {
     contentBase: path.join(root, "_dist"),
@@ -30,14 +29,17 @@ module.exports = {
       {
         test: /\.(css)$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          "style-loader",
           "css-loader",
           {
             loader: "postcss-loader",
             options: {
-              plugins: () => [require("autoprefixer"), require("precss")]
-            }
-          }
+              plugins: () => ([
+                require("autoprefixer"),
+                require("precss"),
+              ]),
+            },
+          },
         ]
       },
       {
@@ -65,7 +67,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(root, "lib", "templates", "index.html")
     }),
-    new MiniCssExtractPlugin()
   ],
   resolve: {
     extensions: ["*", ".js", ".jsx"]

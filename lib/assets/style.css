@@ -34,7 +34,7 @@ header .logo a {
   }
 }
 
-footer {
+.footer {
   color: #6c757d;
   font-size: 0.8em;
   margin-top: 20px;
@@ -42,11 +42,11 @@ footer {
   width: 100%;
 }
 
-footer p {
+.footer p {
   margin: 0
 }
 
-footer a, footer a:hover, footer a:active {
+.footer a, .footer a:hover, .footer a:active {
   color: #6c757d;
   text-decoration: none;
 }
