@@ -44,6 +44,7 @@ header .logo a {
 
 .footer p.version {
   color: #AAA;
+  font-size: 0.9em;
 }
 
 .footer a, .footer a:hover, .footer a:active {

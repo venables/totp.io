@@ -70,7 +70,8 @@ module.exports = {
       template: path.join(root, "lib", "templates", "index.html")
     }),
     new webpack.DefinePlugin({
-      VERSION: JSON.stringify(require("./package.json").version)
+      VERSION: JSON.stringify(require("./package.json").version),
+      DATE: new Date().toISOString().slice(0, 10).replace(/-/g, "")
     })
   ],
   resolve: {
