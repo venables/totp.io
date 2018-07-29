@@ -1,6 +1,6 @@
 # totp.io
 
-One-time passwords in your browser
+One-time passwords in your browser. Helpful for testing and debugging.
 
 ## Installation
 

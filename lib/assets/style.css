@@ -42,13 +42,13 @@ header .logo a {
   width: 100%;
 }
 
-.footer p {
-  margin: 0
+.footer p.version {
+  color: #AAA;
 }
 
 .footer a, .footer a:hover, .footer a:active {
   color: #6c757d;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .jumbotron {

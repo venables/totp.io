@@ -69,6 +69,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(root, "lib", "templates", "index.html")
     }),
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(require("./package.json").version)
+    })
   ],
   resolve: {
     extensions: ["*", ".js", ".jsx"]
