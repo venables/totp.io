@@ -12,6 +12,5 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: "module"
   },
-  plugins: ["node"],
   rules: {}
 };

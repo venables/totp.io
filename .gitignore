@@ -27,6 +27,7 @@ build/Release
 node_modules
 
 .local
+.env
 
 # Build / distribution directory
 _dist
