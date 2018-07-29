@@ -1,5 +1,6 @@
 "use strict";
 
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const root = path.join(__dirname);
@@ -64,6 +65,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new FaviconsWebpackPlugin(path.join(root, 'lib', 'assets', 'favicon.png')),
     new HtmlWebpackPlugin({
       template: path.join(root, "lib", "templates", "index.html")
     }),
