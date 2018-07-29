@@ -1,13 +1,14 @@
 {
   "name": "totp.io",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "One-time passwords in your browser",
   "private": true,
   "scripts": {
     "build": "rm -rf _dist && webpack --config ./webpack.config.js --mode production",
-    "format": "eslint lib --fix",
+    "deploy": "yarn build && aws s3 sync _dist/ s3://www.totp.io --delete",
+    "format": "yarn lint --fix",
     "lint": "eslint lib",
-    "test": "eslint lib",
+    "test": "yarn lint",
     "start": "webpack-dev-server --config ./webpack.config.js --mode development"
   },
   "author": "",
