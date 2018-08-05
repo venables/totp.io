@@ -5,6 +5,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const root = path.join(__dirname);
 const webpack = require("webpack");
+const GitRevisionPlugin = require('git-revision-webpack-plugin')
+const gitRevisionPlugin = new GitRevisionPlugin()
 
 module.exports = {
   entry: [
@@ -71,6 +73,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       VERSION: JSON.stringify(require("./package.json").version),
+      GITSHA: JSON.stringify(gitRevisionPlugin.version()),
       DATE: new Date().toISOString().slice(0, 10).replace(/-/g, "")
     })
   ],
